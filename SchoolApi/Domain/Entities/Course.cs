@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SchoolApi.Models
+namespace SchoolApi.Domain.Entities
 {
     public class Course
     {
