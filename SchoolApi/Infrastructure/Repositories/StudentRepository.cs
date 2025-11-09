@@ -16,12 +16,18 @@ namespace SchoolApi.Infrastructure.Repositories
 
         public async Task<IEnumerable<Student>> GetAllAsync()
         {
-            return await _context.Students.ToListAsync();
+            return await _context.Students
+                .Include(s => s.Enrollments)
+                    .ThenInclude(e => e.Course)
+                .ToListAsync();
         }
 
         public async Task<Student?> GetByIdAsync(int id)
         {
-            return await _context.Students.FindAsync(id);
+            return await _context.Students
+                .Include(s => s.Enrollments)
+                    .ThenInclude(e => e.Course)
+                .FirstOrDefaultAsync(s => s.Id == id);
         }
 
         public async Task<Student> AddAsync(Student student)

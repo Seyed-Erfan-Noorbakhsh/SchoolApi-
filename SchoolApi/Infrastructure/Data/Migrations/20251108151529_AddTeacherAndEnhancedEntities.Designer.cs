@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolApi.Infrastructure.Data;
 
@@ -10,9 +11,11 @@ using SchoolApi.Infrastructure.Data;
 namespace SchoolApi.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    partial class SchoolContextModelSnapshot : ModelSnapshot
+    [Migration("20251108151529_AddTeacherAndEnhancedEntities")]
+    partial class AddTeacherAndEnhancedEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.10");
@@ -74,10 +77,22 @@ namespace SchoolApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Comments")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("CompletionDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("CourseId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("EnrollmentDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal?>("FinalGrade")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Grade")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Status")
@@ -100,6 +115,9 @@ namespace SchoolApi.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("Age")
                         .HasColumnType("INTEGER");
@@ -134,6 +152,9 @@ namespace SchoolApi.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("StudentId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("YearLevel")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
