@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SchoolApi.Data;
+using SchoolApi.Infrastructure.Data;
 
 #nullable disable
 
@@ -20,7 +20,7 @@ namespace SchoolApi.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.10");
 
-            modelBuilder.Entity("SchoolApi.Models.Course", b =>
+            modelBuilder.Entity("SchoolApi.Domain.Entities.Course", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,7 +41,7 @@ namespace SchoolApi.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("SchoolApi.Models.Enrollment", b =>
+            modelBuilder.Entity("SchoolApi.Domain.Entities.Enrollment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -61,7 +61,7 @@ namespace SchoolApi.Migrations
                     b.ToTable("Enrollments");
                 });
 
-            modelBuilder.Entity("SchoolApi.Models.Student", b =>
+            modelBuilder.Entity("SchoolApi.Domain.Entities.Student", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
