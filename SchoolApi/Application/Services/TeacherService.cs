@@ -7,10 +7,13 @@ namespace SchoolApi.Application.Services
     public class TeacherService : ITeacherService
     {
         private readonly ITeacherRepository _repository;
+        private readonly ILogService _logService;
 
-        public TeacherService(ITeacherRepository repository)
+
+        public TeacherService(ITeacherRepository repository, ILogService logService)
         {
             _repository = repository;
+            _logService = logService;
         }
 
         public async Task<IEnumerable<Teacher>> GetAllTeachersAsync()
@@ -25,7 +28,10 @@ namespace SchoolApi.Application.Services
 
         public async Task<Teacher> CreateTeacherAsync(Teacher teacher)
         {
+            var created = await _repository.AddAsync(teacher);
+            await _logService.AddLogAsync($" Teacher '{teacher.FirstName} {teacher.LastName}' was created.");
             return await _repository.AddAsync(teacher);
+            //return created;
         }
 
         public async Task UpdateTeacherAsync(int id, Teacher teacher)
@@ -34,6 +40,7 @@ namespace SchoolApi.Application.Services
                 throw new ArgumentException("ID mismatch");
 
             await _repository.UpdateAsync(teacher);
+            await _logService.AddLogAsync($" Teacher '{teacher.FirstName} {teacher.LastName}' was updated.");
         }
 
         public async Task<bool> DeleteTeacherAsync(int id)
@@ -43,6 +50,7 @@ namespace SchoolApi.Application.Services
                 return false;
 
             await _repository.DeleteAsync(teacher);
+            await _logService.AddLogAsync($" Teacher '{teacher.FirstName} {teacher.LastName}' was deleted.");
             return true;
         }
 
