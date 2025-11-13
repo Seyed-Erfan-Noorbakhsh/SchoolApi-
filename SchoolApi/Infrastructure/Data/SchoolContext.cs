@@ -17,6 +17,8 @@ namespace SchoolApi.Infrastructure.Data
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<User> Users { get; set; }
 
+         public DbSet<Log> Logs { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
