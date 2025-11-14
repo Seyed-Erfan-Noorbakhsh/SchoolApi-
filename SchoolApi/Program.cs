@@ -6,6 +6,7 @@ using SchoolApi.Application.Services;
 using SchoolApi.Domain.Interfaces;
 using SchoolApi.Infrastructure.Data;
 using SchoolApi.Infrastructure.Repositories;
+using SchoolApi.Middleware;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -68,11 +69,11 @@ using (var scope = app.Services.CreateScope())
     context.Database.Migrate();
 }
 
+app.UseMiddleware<ExceptionMiddleware>();
+app.UseMiddleware<JwtMiddleware>();
+
 app.UseSwagger();
 app.UseSwaggerUI();
-
-
-// Middlewares
 
 app.UseAuthentication();    
 app.UseAuthorization();     
