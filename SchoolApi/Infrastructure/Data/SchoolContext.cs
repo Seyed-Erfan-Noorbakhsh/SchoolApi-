@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolApi.Domain.Entities;
+using SchoolApi.Models;
 
 namespace SchoolApi.Infrastructure.Data
 {
@@ -14,6 +15,7 @@ namespace SchoolApi.Infrastructure.Data
         public DbSet<Course> Courses { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
